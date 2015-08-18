@@ -441,6 +441,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#advice</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#annotations</string>
 				</dict>
 				<dict>
@@ -738,7 +742,7 @@
 		<key>methods</key>
 		<dict>
 			<key>begin</key>
-			<string>(?!new)(?!.*pointcut)(?=\w.*\s+)(?=[^=]+\()</string>
+			<string>(?!new)(?!.*pointcut)(?=\w.*\s+)(?=[^=]+\(.*?\))(?!.*:)</string>
 			<key>end</key>
 			<string>}|(?=;)</string>
 			<key>name</key>
@@ -873,6 +877,101 @@
 						<dict>
 							<key>match</key>
 							<string>(@annotation|\b(execution|call|target)\b)</string>
+							<key>name</key>
+							<string>support.function.builtin.aspectj</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>advice</key>
+		<dict>
+			<key>begin</key>
+			<string>(?!new)(?!.*pointcut)(?=\w.*\s+)(?=[^=]+\(.*?\)\s*:)</string>
+			<key>end</key>
+			<string>}|(?=;)</string>
+			<key>name</key>
+			<string>meta.advice.aspectj</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#storage-modifiers</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(around|after|before)\s*\(</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.advice.aspectj</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>name</key>
+					<string>meta.method.identifier.java</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#parameters</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>:\s*(\w+)\s*\(</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.advice.aspectj</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>name</key>
+					<string>meta.advice.identifier.aspectj</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(?=\w.*\s+\w+\s*\()</string>
+					<key>end</key>
+					<string>(?=\w+\s*\()</string>
+					<key>name</key>
+					<string>meta.method.return-type.java</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#all-types</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#throws</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>{</string>
+					<key>end</key>
+					<string>(?=})</string>
+					<key>name</key>
+					<string>meta.method.body.java</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#code</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\b(proceed)\b</string>
 							<key>name</key>
 							<string>support.function.builtin.aspectj</string>
 						</dict>
