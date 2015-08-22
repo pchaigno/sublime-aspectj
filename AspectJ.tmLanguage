@@ -887,7 +887,7 @@
 		<key>advice</key>
 		<dict>
 			<key>begin</key>
-			<string>(?!new)(?!.*pointcut)(?=\w.*\s+)(?=[^=]+\(.*?\)\s*:)</string>
+			<string>(?!new)(?!.*pointcut)(?=[^=]+\(.*?\)[^=]*:)</string>
 			<key>end</key>
 			<string>}|(?=;)</string>
 			<key>name</key>
