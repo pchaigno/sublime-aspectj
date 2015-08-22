@@ -876,7 +876,7 @@
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>(@annotation|\b(execution|call|target)\b)</string>
+							<string>(@annotation|\b(execution|call|target|args|within|handler|cflow|this)\b)</string>
 							<key>name</key>
 							<string>support.function.builtin.aspectj</string>
 						</dict>
