@@ -900,7 +900,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(around|after|before)\s*\(</string>
+					<string>(around|after|before|throwing|returning)\s*\(</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -920,6 +920,12 @@
 							<string>#parameters</string>
 						</dict>
 					</array>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(throwing|returning)(?=\s*:)</string>
+					<key>name</key>
+					<string>keyword.other.advice.aspectj</string>
 				</dict>
 				<dict>
 					<key>begin</key>
