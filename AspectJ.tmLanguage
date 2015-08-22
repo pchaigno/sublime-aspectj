@@ -1163,16 +1163,21 @@
 		</dict>
 		<key>storage-modifiers</key>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
+			<key>patterns</key>
+			<array>
 				<dict>
 					<key>name</key>
 					<string>storage.modifier.java</string>
+					<key>match</key>
+					<string>\b(public|private|protected|static|final|native|synchronized|abstract|threadsafe|transient)\b</string>
+				</dict>
+				<dict>
+					<key>name</key>
+					<string>storage.modifier.aspectj</string>
+					<key>match</key>
+					<string>\b(privileged)\b</string>
 				</dict>
 			</dict>
-			<key>match</key>
-			<string>\b(public|private|protected|static|final|native|synchronized|abstract|threadsafe|transient)\b</string>
 		</dict>
 		<key>strings</key>
 		<dict>
