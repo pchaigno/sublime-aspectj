@@ -929,19 +929,28 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>:\s*(\w+)\s*\(</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>entity.name.function.advice.aspectj</string>
-						</dict>
-					</dict>
+					<string>:</string>
 					<key>end</key>
-					<string>\)</string>
+					<string>(?={)</string>
 					<key>name</key>
 					<string>meta.advice.identifier.aspectj</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#keywords</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#all-types</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>(@annotation|\b(get|set|adviceexecution|execution|call|target|args|within|withincode|handler|cflow|cflowbelow|this|if|preinitialization|staticinitialization|initialization)\b)</string>
+							<key>name</key>
+							<string>support.function.builtin.aspectj</string>
+						</dict>
+					</array>
 				</dict>
 				<dict>
 					<key>begin</key>
