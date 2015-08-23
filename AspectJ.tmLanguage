@@ -455,6 +455,22 @@
 					<key>include</key>
 					<string>#code</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#declare-precedence</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#declare-parents</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#declare-constructs</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#declare-warnings-errors</string>
+				</dict>
 			</array>
 		</dict>
 		<key>code</key>
@@ -742,7 +758,7 @@
 		<key>methods</key>
 		<dict>
 			<key>begin</key>
-			<string>(?!new)(?!.*pointcut)(?=\w.*\s+)(?=[^=]+\(.*?\))(?!.*:)</string>
+			<string>(?!new)(?!.*pointcut)(?=\w[^=:]*\s+)(?=[^=:]+\()(?!.*:)</string>
 			<key>end</key>
 			<string>}|(?=;)</string>
 			<key>name</key>
@@ -812,6 +828,26 @@
 				</dict>
 			</array>
 		</dict>
+		<key>pointcut-definitions</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#keywords</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#all-types</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(@annotation|\b(get|set|adviceexecution|execution|call|target|args|within|withincode|handler|cflow|cflowbelow|this|if|preinitialization|staticinitialization|initialization)\b)</string>
+					<key>name</key>
+					<string>support.function.builtin.aspectj</string>
+				</dict>
+			</array>
+		</dict>
 		<key>pointcuts</key>
 		<dict>
 			<key>begin</key>
@@ -868,26 +904,143 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#keywords</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#all-types</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>(@annotation|\b(get|set|adviceexecution|execution|call|target|args|within|withincode|handler|cflow|cflowbelow|this|if|preinitialization|staticinitialization|initialization)\b)</string>
-							<key>name</key>
-							<string>support.function.builtin.aspectj</string>
+							<string>#pointcut-definitions</string>
 						</dict>
 					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>declare-precedence</key>
+		<dict>
+			<key>begin</key>
+			<string>(declare)\s+(precedence)\s*:</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.declare.aspectj</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.declare.precedence.aspectj</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>;</string>
+			<key>name</key>
+			<string>meta.declare.precedence.aspectj</string>
+		</dict>
+		<key>declare-parents</key>
+		<dict>
+			<key>begin</key>
+			<string>(declare)\s+(parents)\s*:</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.declare.aspectj</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.declare.parents.aspectj</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>;</string>
+			<key>name</key>
+			<string>meta.declare.precedence.aspectj</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#keywords</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(implements|extends)\b</string>
+					<key>name</key>
+					<string>storage.modifier.class.aspectj</string>
+				</dict>
+			</array>
+		</dict>
+		<key>declare-constructs</key>
+		<dict>
+			<key>begin</key>
+			<string>(declare)\s+(@(?:type|method|field|package|constructor))\s*:</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.declare.aspectj</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.declare.construct.aspectj</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>;</string>
+			<key>name</key>
+			<string>meta.declare.construct.aspectj</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#keywords</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#all-types</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#storage-modifiers</string>
+				</dict>
+			</array>
+		</dict>
+		<key>declare-warnings-errors</key>
+		<dict>
+			<key>begin</key>
+			<string>(declare)\s+(warning|error)\s*:</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.declare.aspectj</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.declare.alerts.aspectj</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>;</string>
+			<key>name</key>
+			<string>meta.declare.alerts.aspectj</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#pointcut-definitions</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#strings</string>
 				</dict>
 			</array>
 		</dict>
 		<key>advice</key>
 		<dict>
 			<key>begin</key>
-			<string>(?!new)(?!.*pointcut)(?=[^=]+\(.*?\)[^=]*:)</string>
+			<string>(?!new)(?!.*pointcut)(?=[^=:]+\([^\)]*\)[^=]*:)</string>
 			<key>end</key>
 			<string>}|(?=;)</string>
 			<key>name</key>
@@ -938,17 +1091,7 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#keywords</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#all-types</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>(@annotation|\b(get|set|adviceexecution|execution|call|target|args|within|withincode|handler|cflow|cflowbelow|this|if|preinitialization|staticinitialization|initialization)\b)</string>
-							<key>name</key>
-							<string>support.function.builtin.aspectj</string>
+							<string>#pointcut-definitions</string>
 						</dict>
 					</array>
 				</dict>
