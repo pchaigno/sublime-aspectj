@@ -31,3 +31,5 @@ public aspect CacheAspect {
 ## License
 
 This package is under [MIT license](LICENSE).
+
+The Java syntax is based on https://github.com/textmate/java.tmbundle.
