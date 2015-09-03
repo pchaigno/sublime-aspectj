@@ -530,6 +530,12 @@
 					<key>include</key>
 					<string>#all-types</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(proceed)\b</string>
+					<key>name</key>
+					<string>support.function.builtin.aspectj</string>
+				</dict>
 			</array>
 		</dict>
 		<key>comments</key>
@@ -1130,12 +1136,6 @@
 						<dict>
 							<key>include</key>
 							<string>#code</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>\b(proceed)\b</string>
-							<key>name</key>
-							<string>support.function.builtin.aspectj</string>
 						</dict>
 					</array>
 				</dict>
