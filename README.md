@@ -5,7 +5,13 @@ It is also used to highlight AspectJ code on GitHub (in files, Gists and Markdow
 
 ## Installation
 
-To install this package, please do:
+### Package Control
+
+I recommend using [Package Control](https://packagecontrol.io/), the Sublime Text package manager to install this package. It is much more convenient.
+
+### Manual installation
+
+To install this package manually, please do:
 
 ```
 cd /tmp
