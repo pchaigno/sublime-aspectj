@@ -1339,7 +1339,7 @@
 					<key>match</key>
 					<string>\b(privileged)\b</string>
 				</dict>
-			</dict>
+			</array>
 		</dict>
 		<key>strings</key>
 		<dict>
